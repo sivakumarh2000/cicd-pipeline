@@ -13,10 +13,11 @@ jobs:
 
   build:
 
-    runs-on: self-hosted[user-runner]
+    runs-on: self-hosted
 
     steps:
-
+    - name: Debug
+      run: echo "Workflow is running on the user-runner self-hosted runner"
     - name: Pull Docker image
       run: sudo docker pull sivakumar2905/users:latest
     - name: Delete Old docker container
