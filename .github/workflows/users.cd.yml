@@ -20,7 +20,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        cd users
+        sudo cd users
         docker build -t sivakumar2905/users:latest .
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         docker push sivakumar2905/users:latest
