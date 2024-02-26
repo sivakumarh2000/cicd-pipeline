@@ -1,29 +1,18 @@
 name: Users CD Pipeline
 
 on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Users CI Pipeline"]
+    types:
+      - completed
 
 jobs:
 
-  build_and_deploy_users:
+  build:
 
-    runs-on: self-hosted
+    runs-on: [self-hosted, users]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Build and push users Docker image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: |
-        sudo cd users
-        docker build -t sivakumar2905/users:latest .
-        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        docker push sivakumar2905/users:latest
 
     - name: Pull Docker image
       run: sudo docker pull sivakumar2905/users:latest
