@@ -1,16 +1,19 @@
 name: Users CD Pipeline
 
+# on:
+#   workflow_run:
+#     workflows: ["Users CI Pipeline"]
+#     types:
+#       - completed
+
 on:
-  workflow_run:
-    workflows: ["Users CI Pipeline"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
 
   build:
 
-    runs-on: self-hosted
+    runs-on: self-hosted[user-runner]
 
     steps:
 
